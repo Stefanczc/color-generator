@@ -1,4 +1,3 @@
-
 const blocks = document.getElementsByClassName('color-block');
 
 const hexa = '0123456789ABCDEF';
@@ -13,17 +12,18 @@ function getRandomColor() {
 }
 
 function addColors() {
-    for(let i = 0; i < blocks.length; i++) {
-        blocks[i].style.backgroundColor = getRandomColor();
-        blocks[i].innerText = getRandomColor();  
+    for (let i = 0; i < blocks.length; i++) {
+        const bgColor = getRandomColor();
+        blocks[i].style.backgroundColor = bgColor;
+        blocks[i].innerText = bgColor;  
         blocks[i].addEventListener('click', () => {
             const colorValue = blocks[i].innerText;
+            console.log(colorValue);
             copyToClipboard(colorValue);
             alert(`${colorValue} was copied to clipboard!`);
         }); 
     }
 }
-addColors();
 
 function copyToClipboard(text) {
     const textarea = document.createElement('textarea');
@@ -56,6 +56,8 @@ for (const block of blocks) {
     block.addEventListener('mouseover', startShaking);
     block.addEventListener('mouseleave', stopShaking);
 }
+
+window.addEventListener('load', addColors);
 
 
 
